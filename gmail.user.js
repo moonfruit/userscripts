@@ -15,7 +15,7 @@
     let seen = new WeakSet();
 
     function reload() {
-        Array.from(document.images).forEach(function(img) {
+        Array.from(document.images).forEach(img => {
             if (seen.has(img)) {
                 return;
             }
