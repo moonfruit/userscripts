@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Gmail Local Pictures Viewer
 // @namespace    https://github.com/moonfruit/userscripts
-// @version      0.4
+// @version      0.5
 // @description  Directly access pictures on local sites
 // @author       MoonFruit
 // @match        https://mail.google.com/*
@@ -23,7 +23,7 @@
 
             let groups = img.src.match(re);
             if (groups) {
-                if (groups[3].startsWith('10.') || groups[3].endWith('.gingkoo')) {
+                if (groups[3].startsWith('10.') || groups[3].endsWith('.gingkoo')) {
                     if (groups[2] === "https") {
                         img.src = groups[1];
                     } else {
