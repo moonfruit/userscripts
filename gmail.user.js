@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Gmail Local Pictures Viewer
 // @namespace    https://github.com/moonfruit/userscripts/
-// @version      0.1
+// @version      0.2
 // @description  Directly access pictures on local sites
 // @author       MoonFruit
 // @match        https://mail.google.com/*
@@ -12,7 +12,7 @@
     'use strict';
 
     function reload() {
-        Array.from(document.images).forEach(function(img, index) {
+        Array.from(document.images).forEach(function(img) {
             let results = img.src.match(/https?:\/\/.*?\.googleusercontent\.com\/proxy\/.*?#((https?):\/\/(.*?)\/.*)/);
             if (results) {
                 if (results[3].startsWith('10.')) {
