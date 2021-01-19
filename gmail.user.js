@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         Gmail Local Pictures Viewer
-// @namespace    http://tampermonkey.net/
+// @namespace    https://github.com/moonfruit/userscripts/
 // @version      0.1
 // @description  Directly access pictures on local sites
 // @author       MoonFruit
