@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Gmail Local Pictures Viewer
 // @namespace    https://github.com/moonfruit/userscripts
-// @version      0.5
+// @version      0.6
 // @description  Directly access pictures on local sites
 // @author       MoonFruit
 // @match        https://mail.google.com/*
