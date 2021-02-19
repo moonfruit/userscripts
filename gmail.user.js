@@ -8,32 +8,30 @@
 // @grant        none
 // ==/UserScript==
 
-(function() {
+(function () {
     'use strict';
 
-    let re = /https?:\/\/.*?\.googleusercontent\.com\/proxy\/.*?#((https?):\/\/(.*?)\/.*)/;
-    let seen = new WeakSet();
+    const re = /https?:\/\/.*?\.googleusercontent\.com\/proxy\/.*?#((https?):\/\/(.*?)\/.*)/;
+    const proxy = 'https://10.1.2.32/proxy/x/';
 
-    function reload() {
-        Array.from(document.images).forEach(img => {
-            if (seen.has(img)) {
-                return;
-            }
-            seen.add(img);
-
-            let groups = img.src.match(re);
-            if (groups) {
-                if (groups[3].startsWith('10.') || groups[3].endsWith('.gingkoo')) {
-                    if (groups[2] === "https") {
-                        img.src = groups[1];
-                    } else {
-                        img.src = 'https://10.1.2.32/proxy/x/' + groups[1];
+    const callback = function (mutationsList) {
+        for (let mutation of mutationsList) {
+            if (mutation.target instanceof HTMLImageElement) {
+                let img = mutation.target;
+                let groups = img.src.match(re);
+                if (groups) {
+                    if (groups[3].startsWith('10.') || groups[3].endsWith('.gingkoo')) {
+                        if (groups[2] === "https") {
+                            img.src = groups[1];
+                        } else {
+                            img.src = proxy + groups[1];
+                        }
                     }
                 }
             }
-        });
+        }
     }
 
-    window.addEventListener('load', event => setTimeout(reload, 200));
-    document.addEventListener('click', event => setTimeout(reload, 100));
+    const observer = new MutationObserver(callback);
+    observer.observe(document.body, { attributes: true, subtree: true });
 })();
